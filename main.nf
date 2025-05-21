@@ -1,20 +1,10 @@
-process GENERATE_NUMBERS {
-    output:
-    path 'numbers.txt'
-
+process SAY_HELLO {
     script:
     """
-    #!/usr/bin/env bash
-    touch numbers.txt
-
-    for i in {1..1000}; do
-        echo "Number: \$i"
-        echo \$i >> numbers.txt
-        sleep 1
-    done
+    echo "hello world" && sleep 2h
     """
 }
 
 workflow {
-    GENERATE_NUMBERS()
+    SAY_HELLO()
 }
