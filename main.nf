@@ -1,18 +1,26 @@
-process RUNSAM {
+#!/usr/bin/env nextflow
+
+nextflow.enable.dsl = 2
+
+params.outdir = './results'
+params.duration = 60
+
+process GPU {
+    label 'gpu'
+    
+    container 'nvidia/cuda:12.9.1-cudnn-runtime-ubuntu24.04'
+    
+    accelerator 1
+
+
     script:
     """
-    wget https://github.com/samtools/samtools/raw/refs/heads/develop/test/bedcov/bedcov.bam
-    cat > samtoolsscript.sh << 'EOF'
-    #!/bin/bash
-    samtools view bedcov.bam
-    EOF
-    chmod +x samtoolsscript.sh
-    mkfifo example.pipe
-    bash samtoolsscript.sh > example.pipe 
-    wait
+    echo "starting word_printer"
+    /fusion/s3/nf-lore/binaries/word_printer
+    echo "word_printer complete"
     """
 }
 
 workflow {
-    RUNSAM()
+    GPU()
 }
