@@ -1,7 +1,7 @@
 process SAY_HELLO {
     script:
     """
-    echo "hello world" && sleep 2h
+    echo "hello world"
     """
 }
 
