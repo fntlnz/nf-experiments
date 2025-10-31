@@ -1,4 +1,4 @@
-size_in_gb = 150
+size_in_gb = 800
 size_in_bytes = size_in_gb * (1024**3)
 
 try:
