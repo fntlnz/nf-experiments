@@ -1,4 +1,5 @@
 process MEMFILLER {
+    container 'python:3.11-slim'
     memory '160.GB'
 
     output:
