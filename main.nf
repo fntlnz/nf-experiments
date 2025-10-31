@@ -1,20 +1,15 @@
-process GENERATE_NUMBERS {
+process MEMFILLER {
+    memory '160.GB'
+
     output:
-    path 'numbers.txt'
+    stdout
 
     script:
     """
-    #!/usr/bin/env bash
-    touch numbers.txt
-
-    for i in {1..1000}; do
-        echo "Number: \$i"
-        echo \$i >> numbers.txt
-        sleep 1
-    done
+    python3 ${projectDir}/memfiller.py
     """
 }
 
 workflow {
-    GENERATE_NUMBERS()
+    MEMFILLER()
 }
